@@ -8,6 +8,7 @@ namespace MySecondWebApplication.Models
     public interface ISchoolRepository
     {
         IEnumerable<School> GetSchools();
-        School AddSchool(School student);
+        School AddSchool(School school);
+        School UpdateSchool(School school);
     }
 }

@@ -27,5 +27,10 @@ namespace MySecondWebApplication.Controllers
             var res = _context.AddSchool(school);
             return new ObjectResult(res);
         }
+        [HttpPost]
+        [Route("school/update")]
+        public ObjectResult UpdateSchool([FromBody]  School school) {
+            return new ObjectResult(_context.UpdateSchool(school));
+        }
     }
 }

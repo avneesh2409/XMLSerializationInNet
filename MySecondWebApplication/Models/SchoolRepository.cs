@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,17 @@ namespace MySecondWebApplication.Models
             _context.SaveChanges();
             return school;
         }
-
+        public School UpdateSchool(School school) {
+             
+            var entity = _context.schools.FirstOrDefault(item => item.Id == school.Id);
+            if (entity != null)
+            {
+                entity.Name = school.Name;
+                _context.SaveChanges();
+                return school;
+            }
+            return null;
+        }
         public IEnumerable<School> GetSchools()
         {
             return _context.schools;

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySecondWebApplication.Middleware;
 using MySecondWebApplication.Models;
 
 namespace MySecondWebApplication
@@ -53,6 +54,7 @@ namespace MySecondWebApplication
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseMvc();
+            //app.UseMyMiddleware();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
