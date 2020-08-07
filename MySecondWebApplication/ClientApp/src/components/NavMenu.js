@@ -1,23 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.css';
+import styles from '../css/styles.module.css';
 
 const NavMenu = () => {
-    const anchorStyle = {
-        padding: '5px'
-    }
+
         return (
             <header>
-                    <nav className="navbar navbar-default">
-                    <div className="container-fluid">
-                        <ul style={{ listStyleType: 'none', paddingLeft: '0px' }}>
-                            <Link style={anchorStyle} to="/home">Home</Link>
-                            <Link style={anchorStyle} to="/contact">contact</Link>
-                            <Link style={anchorStyle} to="/library">library</Link>
-                            <Link style={anchorStyle} to="/event">event</Link>
+                <nav className={styles.navWrapper}>
+                    <div className={styles.navContainer}>
+                        <ul className={styles.ulNavContainer}>
+                            <Link className={styles.anchorStyle} to="/home">Home</Link>
+                            <Link className={styles.anchorStyle} to="/school">School</Link>
+                            <Link className={styles.anchorStyle} to="/student">Student</Link>
                         </ul>
-                        </div>
-                    </nav>
+                        <ul className={styles.rightAlign}>
+                                <Link className={styles.anchorStyle} to="/register">Register</Link>
+                                <Link className={styles.anchorStyle} to="/login">Login</Link>
+                                <Link className={styles.anchorStyle} to="/logout">Logout</Link>
+                        </ul>
+                    </div>
+                   
+                </nav>
             </header>
         );
 }

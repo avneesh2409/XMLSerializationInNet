@@ -1,2 +1,7 @@
-﻿export const GET_TEST = 'GET_TEST';
-export const HISTORY_PUSH = 'HISTORY_PUSH';
+﻿export const GET_TEST = 'GET_TEST'
+export const HISTORY_PUSH = 'HISTORY_PUSH'
+export const SCHOOL_FETCH_URL = '/api/schools'
+export const STUDENT_FETCH_URL = ''
+export const FETCH_SCHOOL_RESPONSE = 'FETCH_SCHOOL_RESPONSE'
+export const FETCH_SCHOOL_REQUEST = 'FETCH_SCHOOL_REQUEST'
+export const FETCH_SCHOOL_ERROR = 'FETCH_SCHOOL_ERROR'

@@ -1,0 +1,24 @@
+﻿.navWrapper {
+    padding: 10px;
+    background-color: #f8f9fa !important;
+}
+.navContainer{
+
+}
+.rightAlign {
+    display: inline;
+    position: absolute;
+    right: 16px;
+    top: 2px;
+}
+.ulNavContainer {
+    list-style-type: none;
+    padding-left: 0px;
+    display: inline;
+}
+.anchorStyle {
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+

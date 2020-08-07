@@ -26,22 +26,38 @@ namespace MySecondWebApplication.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    School = table.Column<string>(nullable: true),
+                    SchoolId = table.Column<int>(nullable: true),
                     Address = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_students", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_students_schools_SchoolId",
+                        column: x => x.SchoolId,
+                        principalTable: "schools",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "schools",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Maharishi Vidya Mandir" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_students_SchoolId",
+                table: "students",
+                column: "SchoolId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "schools");
+                name: "students");
 
             migrationBuilder.DropTable(
-                name: "students");
+                name: "schools");
         }
     }
 }

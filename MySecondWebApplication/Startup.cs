@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MySecondWebApplication.Middleware;
+//using MySecondWebApplication.Middleware;
 using MySecondWebApplication.Models;
 
 namespace MySecondWebApplication

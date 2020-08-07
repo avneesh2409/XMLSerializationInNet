@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace MySecondWebApplication.Models
         private int _id;
         private string _name;
         private School _school;
+        public int SchoolId { get; set; }
         private string _address;
         public int Id {
             get {
@@ -30,6 +32,8 @@ namespace MySecondWebApplication.Models
                 this._name = value;
             }
         }
+
+        [ForeignKey("SchoolId")]
         public School School
         {
             get

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using MySecondWebApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +16,20 @@ namespace MySecondWebApplication.Models
         }
         public DbSet<Student> students { get; set; }
         public DbSet<School> schools { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
+    }
+}
+public static class ModelBuilderExtensions
+{
+    public static void Seed(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<School>().HasData(
+            new School { 
+            Id=1,
+            Name="Saraswati vidya mandir"
+            });
     }
 }
