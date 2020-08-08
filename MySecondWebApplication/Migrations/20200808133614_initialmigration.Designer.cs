@@ -9,8 +9,8 @@ using MySecondWebApplication.Models;
 namespace MySecondWebApplication.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200807144941_thirdMigration")]
-    partial class thirdMigration
+    [Migration("20200808133614_initialmigration")]
+    partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,13 @@ namespace MySecondWebApplication.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("schools");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Saraswati vidya mandir"
+                        });
                 });
 
             modelBuilder.Entity("MySecondWebApplication.Models.Student", b =>
@@ -56,12 +63,47 @@ namespace MySecondWebApplication.Migrations
                     b.HasIndex("SchoolId");
 
                     b.ToTable("students");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Bhopal",
+                            Name = "Naman Dubey",
+                            SchoolId = 1
+                        });
+                });
+
+            modelBuilder.Entity("MySecondWebApplication.Models.UserModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("MySecondWebApplication.Models.Student", b =>
                 {
                     b.HasOne("MySecondWebApplication.Models.School", "School")
-                        .WithMany("Students")
+                        .WithMany()
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -1,25 +1,24 @@
-﻿import { FETCH_SCHOOL_REQUEST, FETCH_SCHOOL_RESPONSE, FETCH_SCHOOL_ERROR } from '../constants';
+﻿import { FETCH_STUDENT_REQUEST, FETCH_STUDENT_RESPONSE, FETCH_STUDENT_ERROR } from '../constants'
 
-export const SchoolInitial = {
+export const StudentInitial = {
     loading: false,
-    data: null,
-    error:''
+    error: '',
+    data: null
 }
-const SchoolReducer = (state = SchoolInitial, action) => {
-
+const StudentReducer = (state = StudentInitial, action) => {
     switch (action.type) {
-        case FETCH_SCHOOL_REQUEST:
+        case FETCH_STUDENT_REQUEST:
             return {
                 ...state,
                 loading: true
             }
-        case FETCH_SCHOOL_RESPONSE:
+        case FETCH_STUDENT_RESPONSE:
             return {
                 ...state,
                 loading: false,
                 data: action.data
             }
-        case FETCH_SCHOOL_ERROR:
+        case FETCH_STUDENT_ERROR:
             return {
                 ...state,
                 loading: false,
@@ -28,4 +27,4 @@ const SchoolReducer = (state = SchoolInitial, action) => {
         default: return state;
     }
 }
-export default SchoolReducer;
+export default StudentReducer

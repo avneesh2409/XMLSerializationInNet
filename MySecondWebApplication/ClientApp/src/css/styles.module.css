@@ -5,6 +5,12 @@
 .navContainer{
 
 }
+.studentTable {
+    border-collapse: collapse;
+}
+    .studentTable td {
+        padding:10px;
+    }
 .rightAlign {
     display: inline;
     position: absolute;
@@ -21,4 +27,3 @@
     text-decoration: none;
     color: black;
 }
-

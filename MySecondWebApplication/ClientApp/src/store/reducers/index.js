@@ -1,7 +1,7 @@
-﻿import testReducer from './testReducer';
-import SchoolReducer from './SchoolReducer';
+﻿import SchoolReducer from './SchoolReducer';
+import StudentReducer from './StudentReducer';
 
 export const reducers = {
-    testReducer,
-    SchoolReducer
+    SchoolReducer,
+    StudentReducer
 }

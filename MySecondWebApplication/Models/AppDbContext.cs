@@ -16,6 +16,7 @@ namespace MySecondWebApplication.Models
         }
         public DbSet<Student> students { get; set; }
         public DbSet<School> schools { get; set; }
+        public DbSet<UserModel> users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Seed();
@@ -26,10 +27,22 @@ public static class ModelBuilderExtensions
 {
     public static void Seed(this ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<UserModel>()
+       .HasIndex(u => u.Email)
+       .IsUnique();
+
         modelBuilder.Entity<School>().HasData(
             new School { 
             Id=1,
             Name="Saraswati vidya mandir"
+            });
+        modelBuilder.Entity<Student>().HasData(
+            new Student
+            {
+              Id=1,
+              Address="Bhopal",
+              Name="Naman Dubey",
+              SchoolId=1
             });
     }
 }

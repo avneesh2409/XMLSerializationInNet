@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using MySecondWebApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,12 +14,32 @@ namespace MySecondWebApplication.Models
             _context = context;
         }
 
-        public Student AddStudent(Student student)
+        public bool AddStudent(StudentAddModel student)
         {
-            Student result = null;
-            _context.students.Add(student);
-            _context.SaveChanges();
-            return result;
+            try
+            {
+                var res = _context.schools.Where(e=>e.Id == student.SchoolId).FirstOrDefault();
+                if (res != null) {
+                    _context.students.Add(new Student { 
+                           Name=student.Name,
+                           Address=student.Address,
+                           SchoolId=student.SchoolId,
+                           School=res
+                    });
+                    _context.SaveChanges();
+                    return true;
+                }
+                
+                return false;
+            }
+            catch(Exception ex) {
+                return false;
+            }
+        }
+
+        public Student DeleteStudent(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<Student> GetStudents()
@@ -25,6 +47,10 @@ namespace MySecondWebApplication.Models
             var result = _context.students;
             return result;
         }
-        
+
+        public Student UpdateStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

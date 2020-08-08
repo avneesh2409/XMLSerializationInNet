@@ -2,7 +2,7 @@
 
 namespace MySecondWebApplication.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,13 +20,28 @@ namespace MySecondWebApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "students",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    SchoolId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    SchoolId = table.Column<int>(nullable: true),
                     Address = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -37,24 +52,38 @@ namespace MySecondWebApplication.Migrations
                         column: x => x.SchoolId,
                         principalTable: "schools",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "schools",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "Maharishi Vidya Mandir" });
+                values: new object[] { 1, "Saraswati vidya mandir" });
+
+            migrationBuilder.InsertData(
+                table: "students",
+                columns: new[] { "Id", "Address", "Name", "SchoolId" },
+                values: new object[] { 1, "Bhopal", "Naman Dubey", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_students_SchoolId",
                 table: "students",
                 column: "SchoolId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_users_Email",
+                table: "users",
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "students");
+
+            migrationBuilder.DropTable(
+                name: "users");
 
             migrationBuilder.DropTable(
                 name: "schools");

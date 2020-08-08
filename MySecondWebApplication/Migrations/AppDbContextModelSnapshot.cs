@@ -61,6 +61,42 @@ namespace MySecondWebApplication.Migrations
                     b.HasIndex("SchoolId");
 
                     b.ToTable("students");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Bhopal",
+                            Name = "Naman Dubey",
+                            SchoolId = 1
+                        });
+                });
+
+            modelBuilder.Entity("MySecondWebApplication.Models.UserModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("MySecondWebApplication.Models.Student", b =>

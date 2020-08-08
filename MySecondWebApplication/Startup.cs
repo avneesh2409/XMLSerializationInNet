@@ -32,6 +32,8 @@ namespace MySecondWebApplication
                   .AddDbContext<AppDbContext>
                   (option => option.UseSqlServer(_config["database:connection"]));
             services.AddScoped<ISchoolRepository, SchoolRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IUserModel, UserModelRepository>();
             services.AddMvc(options => {
                 options.EnableEndpointRouting = false;
             });
