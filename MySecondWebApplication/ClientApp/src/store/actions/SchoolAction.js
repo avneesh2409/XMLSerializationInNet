@@ -1,10 +1,11 @@
 ﻿import { SCHOOL_FETCH_URL, FETCH_SCHOOL_REQUEST, FETCH_SCHOOL_RESPONSE, FETCH_SCHOOL_ERROR } from "../constants"
 
-export const fetchSchoolData = () => {
+export const fetchSchoolData = (token) => {
     const options = {
         method: 'GET',
         headers: {
-            'Accept':'application/json'
+            'Accept': 'application/json',
+            'Authorization':`Bearer ${token}`
         }
     }
     return (dispatch) => {

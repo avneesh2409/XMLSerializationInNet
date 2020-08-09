@@ -9,6 +9,7 @@ namespace MySecondWebApplication.Models
     public interface IStudentRepository
     {
         IEnumerable<Student> GetStudents();
+        Student GetStudentById(int id);
         bool AddStudent(StudentAddModel student);
         Student DeleteStudent(int id);
         Student UpdateStudent(Student student);

@@ -11,4 +11,12 @@ namespace MySecondWebApplication.ViewModels
         public string Name { get; set; }
         public string Email { get; set; }
     }
+    public class SendToken
+    { 
+        public string Token { get; set; }
+    }
+    public class LoginUser { 
+    public string Email { get; set; }
+    public string Password { get; set; }
+    }
 }

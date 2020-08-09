@@ -9,6 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 //using MySecondWebApplication.Middleware;
 using MySecondWebApplication.Models;
+using Microsoft.AspNetCore.Authentication;
+using MySecondWebApplication.Middleware;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace MySecondWebApplication
 {
@@ -27,13 +32,33 @@ namespace MySecondWebApplication
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            #region Database Connection Here
             services.AddEntityFrameworkSqlServer()
                   .AddEntityFrameworkSqlServer()
                   .AddDbContext<AppDbContext>
                   (option => option.UseSqlServer(_config["database:connection"]));
+            #endregion
+            #region Dependency Injection Here
             services.AddScoped<ISchoolRepository, SchoolRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IUserModel, UserModelRepository>();
+            #endregion
+            #region Authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = _config["Jwt:Issuer"],
+                        ValidAudience = _config["Jwt:Issuer"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Secret"]))
+                    };
+                });
+            #endregion
             services.AddMvc(options => {
                 options.EnableEndpointRouting = false;
             });
@@ -49,14 +74,13 @@ namespace MySecondWebApplication
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
             app.UseMvc();
-            //app.UseMyMiddleware();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";

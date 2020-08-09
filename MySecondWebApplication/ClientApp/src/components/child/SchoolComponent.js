@@ -5,10 +5,11 @@ import styles from "../../css/styles.module.css"
 
 const SchoolComponent = () => {
     const state = useSelector(state => state.SchoolReducer)
+    const { token } = useSelector(state=>state.UserReducer)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchSchoolData())
+        dispatch(fetchSchoolData(token))
         return () => {
 
         }

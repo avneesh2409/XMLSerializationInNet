@@ -1,4 +1,4 @@
-﻿import { REGISTER_URL, REGISTER_USER_REQUEST, REGISTER_USER_RESPONSE, REGISTER_USER_ERROR } from "../constants"
+﻿import { REGISTER_URL, REGISTER_USER_REQUEST,LOGIN_URL,LOGIN_USER_REQUEST,LOGIN_USER_ERROR,LOGIN_USER_RESPONSE, REGISTER_USER_RESPONSE, REGISTER_USER_ERROR, LOGOUT_USER } from "../constants"
 
 
 export const registerUserAction = (payload) => {
@@ -40,6 +40,51 @@ export const registerUserError = (error) => {
     return {
         type: REGISTER_USER_ERROR,
         error
+    }
+}
+
+
+
+
+export const loginUserAction = (payload) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    }
+    return (dispatch) => {
+        dispatch(loginUserRequest())
+        fetch(LOGIN_URL, options).then(res => res.json())
+            .then(json => dispatch(loginUserResponse(json.token)))
+            .catch(err => dispatch(loginUserError(err.message)))
+    }
+}
+
+export const loginUserRequest = () => {
+    return {
+        type: LOGIN_USER_REQUEST
+    }
+}
+export const loginUserResponse = (data) => {
+    return {
+        type: LOGIN_USER_RESPONSE,
+        data
+    }
+}
+export const loginUserError = (error) => {
+    alert("unable to log In");
+    return {
+        type: LOGIN_USER_ERROR,
+        error
+    }
+}
+
+export const LogoutUserAction = () => {
+    return {
+        type: LOGOUT_USER
     }
 }
 

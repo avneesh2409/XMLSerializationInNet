@@ -18,19 +18,14 @@ namespace MySecondWebApplication.Models
         {
             try
             {
-                var res = _context.schools.Where(e=>e.Id == student.SchoolId).FirstOrDefault();
-                if (res != null) {
-                    _context.students.Add(new Student { 
-                           Name=student.Name,
-                           Address=student.Address,
-                           SchoolId=student.SchoolId,
-                           School=res
-                    });
+                _context.students.Add(new Student
+                {
+                    Name = student.Name,
+                    Address = student.Address,
+                    SchoolId = student.SchoolId
+                });
                     _context.SaveChanges();
                     return true;
-                }
-                
-                return false;
             }
             catch(Exception ex) {
                 return false;
@@ -42,9 +37,24 @@ namespace MySecondWebApplication.Models
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Student> GetStudents()
+        public Student GetStudentById(int id)
         {
-            var result = _context.students;
+            try
+            {
+                var result = _context.students.Where(s => s.Id == id)
+                    .Include(s => s.School)
+                    .FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public IEnumerable<Student> GetStudents()
+        {                 
+            var result = _context.students.Include(s=>s.School);
             return result;
         }
 

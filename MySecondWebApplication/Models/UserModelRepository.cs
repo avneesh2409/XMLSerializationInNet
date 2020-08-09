@@ -17,12 +17,7 @@ namespace MySecondWebApplication.Models
         public bool AddUser(UserModel user)
         {
             try {
-                _context.users.Add(new UserModel
-                {
-                    Email = user.Email,
-                    Name = user.Name,
-                    Password = user.Password
-                });
+                _context.users.Add(user);
                 _context.SaveChanges();
                 return true;
             }
@@ -37,8 +32,9 @@ namespace MySecondWebApplication.Models
         {
             try
             {
+                var res = _context.users.Where(s =>(s.Email == email && s.Password == password))
+                           .FirstOrDefault();
                 UserViewModel user = new UserViewModel();
-                var res = _context.users.Find(email, password);
                 user.Email = res.Email;
                 user.Name = res.Name;
                 user.Id = res.Id;
