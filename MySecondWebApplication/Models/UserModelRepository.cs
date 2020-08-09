@@ -34,11 +34,14 @@ namespace MySecondWebApplication.Models
             {
                 var res = _context.users.Where(s =>(s.Email == email && s.Password == password))
                            .FirstOrDefault();
-                UserViewModel user = new UserViewModel();
-                user.Email = res.Email;
-                user.Name = res.Name;
-                user.Id = res.Id;
-                return user;
+                if (res != null) {
+                    UserViewModel user = new UserViewModel();
+                    user.Email = res.Email;
+                    user.Name = res.Name;
+                    user.Id = res.Id;
+                    return user;
+                }
+                return null;
             }
             catch (Exception ex) {
                 Console.WriteLine(ex.Message);

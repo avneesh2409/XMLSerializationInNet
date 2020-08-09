@@ -1,5 +1,7 @@
 ﻿export const SCHOOL_FETCH_URL = '/api/schools'
 export const STUDENT_FETCH_URL = '/api/students'
+export const STUDENT_ADD_URL = '/api/student/add'
+export const SCHOOL_ADD_URL = '/api/school/add'
 export const FETCH_SCHOOL_RESPONSE = 'FETCH_SCHOOL_RESPONSE'
 export const FETCH_SCHOOL_REQUEST = 'FETCH_SCHOOL_REQUEST'
 export const FETCH_SCHOOL_ERROR = 'FETCH_SCHOOL_ERROR'

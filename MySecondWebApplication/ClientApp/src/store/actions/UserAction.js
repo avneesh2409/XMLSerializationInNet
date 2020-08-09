@@ -75,7 +75,6 @@ export const loginUserResponse = (data) => {
     }
 }
 export const loginUserError = (error) => {
-    alert("unable to log In");
     return {
         type: LOGIN_USER_ERROR,
         error

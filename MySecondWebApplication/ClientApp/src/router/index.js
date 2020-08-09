@@ -8,6 +8,8 @@ import Login from '../components/child/LoginForm'
 import Register from '../components/child/RegisterForm'
 import Home from '../components/home'
 import { useSelector } from 'react-redux'
+import CreateSchool from '../components/child/CreateSchool'
+import CreateStudent from '../components/child/CreateStudent'
 
 const Router = () => {
     const state = useSelector(state => state.UserReducer);
@@ -20,6 +22,8 @@ const Router = () => {
                         <Route exact path='/school' render={() => <SchoolComponent />} />
                         <Route exact path='/student' render={() => <StudentComponent />} />
                         <Route exact path='/logout' render={() => <Logout />} />
+                        <Route exact path='/school/create' render={() => <CreateSchool />} />
+                        <Route exact path='/student/create' render={() => <CreateStudent />} />
                         <Route path='*' render={() => <Redirect to='/home' />} />
                     </>
                     :

@@ -39,7 +39,7 @@ namespace MySecondWebApplication.Controllers
         }
         [HttpPost]
         [Route("school/add")]
-        public ObjectResult AddSchool(School school) {
+        public ObjectResult AddSchool([FromBody] School school) {
             var res = _context.AddSchool(school);
             return new ObjectResult(res);
         }
