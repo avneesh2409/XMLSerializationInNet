@@ -18,7 +18,7 @@ namespace MySecondWebApplication.Middleware
 
         public Task Invoke(HttpContext httpContext)
         {
-            if (httpContext.Request.Path == "/") {
+            if (httpContext.Request.Path.ToString() == "/") {
                 httpContext.Request.Path = "/api/schools";
             }
             return _next(httpContext);

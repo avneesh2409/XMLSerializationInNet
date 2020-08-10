@@ -14,24 +14,30 @@ namespace MySecondWebApplication.Middleware
 {
     public class JwtMiddleware
     {
-        public class JwtMiddlewareClass
-        {
             private readonly RequestDelegate _next;
             private readonly IConfiguration _appSettings;
 
-            public JwtMiddlewareClass(RequestDelegate next, IConfiguration appSettings)
+            public JwtMiddleware(RequestDelegate next, IConfiguration appSettings)  
             {
                 _next = next;
                 _appSettings = appSettings;
             }
 
-            public async Task Invoke(HttpContext context, IUserModel userService)
+            public async Task Invoke(HttpContext context)
             {
-                var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-                if (token != null)
-                    AuthenticateToken(token);
-
+            if (context.Request.Path.ToString() == "/api/login" || context.Request.Path.ToString() == "/api/register" || context.Request.Path.ToString() == "/") {
                 await _next(context);
+            }
+                var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+                JwtSecurityToken res = null;
+                res = AuthenticateToken(token);
+            if (res != null)
+            {
+                await _next(context);
+            }
+            else {
+                await context.Response.WriteAsync("invalid token");
+            }              
             }
 
             public JwtSecurityToken AuthenticateToken(string token)
@@ -55,11 +61,7 @@ namespace MySecondWebApplication.Middleware
                 catch
                 {
                     return null;
-                    // do nothing if jwt validation fails
-                    // user is not attached to context so request won't have access to secure routes
                 }
             }
         }
-
-    }
 }

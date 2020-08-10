@@ -80,6 +80,7 @@ namespace MySecondWebApplication
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
             app.UseAuthentication();
+            //app.UseMiddleware<JwtMiddleware>();
             app.UseMvc();
             app.UseSpa(spa =>
             {

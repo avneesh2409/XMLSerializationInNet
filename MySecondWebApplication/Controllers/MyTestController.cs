@@ -48,6 +48,13 @@ namespace MySecondWebApplication.Controllers
         public ObjectResult UpdateSchool([FromBody]  School school) {
             return new ObjectResult(_context.UpdateSchool(school));
         }
+        [HttpDelete]
+        [Route("school/delete/{id}")]
+        public ObjectResult DeleteSchool(int id)
+        {   
+            var result = _context.DeleteSchool(id);
+            return new ObjectResult(result);
+        }
         #endregion
 
         #region Student
@@ -65,8 +72,8 @@ namespace MySecondWebApplication.Controllers
             var result = _studentContext.AddStudent(student);
             return new ObjectResult(result);
         }
-        [HttpGet]
-        [Route("student/{id}")]
+        [HttpDelete]
+        [Route("student/delete/{id}")]
         public ObjectResult GetStudentById(int id)
         {
             var result = _studentContext.GetStudentById(id);

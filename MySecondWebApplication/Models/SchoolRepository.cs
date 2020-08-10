@@ -33,5 +33,21 @@ namespace MySecondWebApplication.Models
         {
             return _context.schools;
         }
+
+        public School DeleteSchool(int id)
+        {
+            try
+            {
+                var x = _context.schools.Find(id);
+                _context.schools.Remove(x);
+                _context.SaveChanges();
+                return x;
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+            
+        }
     }
 }

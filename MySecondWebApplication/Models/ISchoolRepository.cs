@@ -10,5 +10,6 @@ namespace MySecondWebApplication.Models
         IEnumerable<School> GetSchools();
         School AddSchool(School school);
         School UpdateSchool(School school);
+        School DeleteSchool(int id);
     }
 }
