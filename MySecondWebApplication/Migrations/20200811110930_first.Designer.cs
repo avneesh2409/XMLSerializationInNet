@@ -9,8 +9,8 @@ using MySecondWebApplication.Models;
 namespace MySecondWebApplication.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200808134403_initialmigrati212")]
-    partial class initialmigrati212
+    [Migration("20200811110930_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -104,7 +104,7 @@ namespace MySecondWebApplication.Migrations
             modelBuilder.Entity("MySecondWebApplication.Models.Student", b =>
                 {
                     b.HasOne("MySecondWebApplication.Models.School", "School")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

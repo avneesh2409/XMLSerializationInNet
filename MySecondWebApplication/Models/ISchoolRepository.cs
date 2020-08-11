@@ -11,5 +11,6 @@ namespace MySecondWebApplication.Models
         School AddSchool(School school);
         School UpdateSchool(School school);
         School DeleteSchool(int id);
+        School GetSchoolById(int id);
     }
 }

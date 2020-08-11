@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,19 @@ namespace MySecondWebApplication.Models
                 return null;
             }
             
+        }
+
+        public School GetSchoolById(int id)
+        {
+            try
+            {
+                var result = _context.schools.FirstOrDefault(e=>e.Id==id);
+                return result;
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
     }
 }

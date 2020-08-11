@@ -11,6 +11,7 @@ namespace MySecondWebApplication.Models
     {
         private int _id;
         private string _name;
+        private ICollection<Student> _students;
         public int Id
         {
             get
@@ -31,6 +32,15 @@ namespace MySecondWebApplication.Models
             set
             {
                 this._name = value;
+            }
+        }
+        public virtual ICollection<Student> Students
+        {
+            get {
+                return _students;
+            }
+            set {
+                _students = value;
             }
         }
     }

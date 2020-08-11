@@ -1,4 +1,4 @@
-﻿import { REGISTER_URL, REGISTER_USER_REQUEST,LOGIN_URL,LOGIN_USER_REQUEST,LOGIN_USER_ERROR,LOGIN_USER_RESPONSE, REGISTER_USER_RESPONSE, REGISTER_USER_ERROR, LOGOUT_USER } from "../constants"
+﻿import { REGISTER_URL, REGISTER_USER_REQUEST,LOGIN_URL,LOGIN_USER_REQUEST,LOGIN_USER_ERROR,LOGIN_USER_RESPONSE, REGISTER_USER_RESPONSE, REGISTER_USER_ERROR, LOGOUT_USER, CLEAR_LOG_DATA } from "../constants"
 
 
 export const registerUserAction = (payload) => {
@@ -86,4 +86,8 @@ export const LogoutUserAction = () => {
         type: LOGOUT_USER
     }
 }
-
+export const clearLogData = () => {
+    return {
+        type: CLEAR_LOG_DATA
+    }
+}

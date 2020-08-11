@@ -34,7 +34,18 @@ namespace MySecondWebApplication.Models
 
         public Student DeleteStudent(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var x = _context.students.Find(id);
+                _context.students.Remove(x);
+                _context.SaveChanges();
+                return x;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
 
         public Student GetStudentById(int id)
@@ -53,8 +64,8 @@ namespace MySecondWebApplication.Models
         }
 
         public IEnumerable<Student> GetStudents()
-        {                 
-            var result = _context.students.Include(s=>s.School);
+        {
+            var result = _context.students;
             return result;
         }
 

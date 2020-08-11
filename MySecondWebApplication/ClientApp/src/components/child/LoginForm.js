@@ -1,8 +1,8 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from '../../css/register.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUserAction } from '../../store/actions/UserAction';
+import { loginUserAction, clearLogData } from '../../store/actions/UserAction';
 import Loader from '../../helper/loader';
 
 const Login = () => {
@@ -18,6 +18,12 @@ const Login = () => {
             [e.target.name]: e.target.value
         })
     }
+    useEffect(() => {
+
+        return () => {
+            dispatch(clearLogData())  
+        }
+    },[])
     const submitHandler = (e) => {
         dispatch(loginUserAction(state));
         setState(initial)

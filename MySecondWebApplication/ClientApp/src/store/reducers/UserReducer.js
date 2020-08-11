@@ -1,4 +1,4 @@
-﻿import {REGISTER_USER_REQUEST, REGISTER_USER_RESPONSE, REGISTER_USER_ERROR, LOGIN_USER_REQUEST, LOGIN_USER_RESPONSE, LOGIN_USER_ERROR, LOGOUT_USER } from '../constants'
+﻿import {REGISTER_USER_REQUEST, REGISTER_USER_RESPONSE, REGISTER_USER_ERROR, LOGIN_USER_REQUEST, LOGIN_USER_RESPONSE, LOGIN_USER_ERROR, LOGOUT_USER, CLEAR_LOG_DATA } from '../constants'
 
 export const UserInitial = {
     loading: false,
@@ -47,6 +47,14 @@ const UserReducer = (state = UserInitial, action) => {
         case LOGOUT_USER:
             return {
                 ...UserInitial
+            }
+        case CLEAR_LOG_DATA:
+            return {
+                ...state,
+                logError: '',
+                logLoading: false,
+                loading: false,
+                error:''
             }
         default: return state;
     }

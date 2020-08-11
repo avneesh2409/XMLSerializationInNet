@@ -102,7 +102,7 @@ namespace MySecondWebApplication.Migrations
             modelBuilder.Entity("MySecondWebApplication.Models.Student", b =>
                 {
                     b.HasOne("MySecondWebApplication.Models.School", "School")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

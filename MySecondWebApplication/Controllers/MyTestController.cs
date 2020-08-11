@@ -37,6 +37,11 @@ namespace MySecondWebApplication.Controllers
         {
             return new ObjectResult(_context.GetSchools());
         }
+        [HttpGet]
+        [Route("school/{id}")]
+        public ObjectResult GetSchoolById(int id) {
+            return new ObjectResult(_context.GetSchoolById(id));
+        }
         [HttpPost]
         [Route("school/add")]
         public ObjectResult AddSchool([FromBody] School school) {
@@ -72,8 +77,17 @@ namespace MySecondWebApplication.Controllers
             var result = _studentContext.AddStudent(student);
             return new ObjectResult(result);
         }
+
         [HttpDelete]
         [Route("student/delete/{id}")]
+        public ObjectResult DeleteStudent(int id)
+        {
+            var result = _studentContext.DeleteStudent(id);
+                return new ObjectResult(result);
+        }
+
+        [HttpGet]
+        [Route("student/{id}")]
         public ObjectResult GetStudentById(int id)
         {
             var result = _studentContext.GetStudentById(id);
