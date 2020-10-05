@@ -18,6 +18,7 @@ const NavMenu = () => {
                                         <Link className={styles.anchorStyle} to="/student">Student</Link>
                                         <Link className={styles.anchorStyle} to="/student/create">Create Student</Link>
                                         <Link className={styles.anchorStyle} to="/school/create">Create School</Link>
+                                        <Link className={styles.anchorStyle} to="/fluent">Fluent UI</Link>
                                     </>
                                     : <Link className={styles.anchorStyle} to="/">Index</Link>
                             }

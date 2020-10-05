@@ -2,6 +2,9 @@
 import styles from '../../css/create.module.css'
 import { SCHOOL_FETCH_URL, STUDENT_ADD_URL } from '../../store/constants';
 import { useSelector } from 'react-redux';
+import {
+    DocumentCardPreview,
+    DocumentCardTitle } from '@fluentui/react/lib/DocumentCard';
 
 const CreateStudent = () => {
     const { token } = useSelector(s => s.UserReducer);
@@ -58,6 +61,7 @@ const CreateStudent = () => {
     return (
         <div className={styles.container}>
             <h1>Register Student</h1>
+            
             <div>
                 <label htmlFor="fname">Student Name</label>
                 <input type="text" className={styles.global} id="fname" name="name" placeholder="Your Student Name.." value={state.name} onChange={changeHandler} />
